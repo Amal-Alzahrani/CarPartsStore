@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Product>
+
+<div class="container">
+    <h1 class="text-center">قطع الغيار</h1>
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="~/images/@(product.Name).jpg" alt="@product.Name" class="card-img-top img-fluid" style="height: 300px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p>السعر: @product.Price ريال</p>
+                        <button onclick="addToCart(@product.Id)" class="btn btn-primary">إضافة إلى السلة</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
