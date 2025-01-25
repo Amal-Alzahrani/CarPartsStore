@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CarPartsStore.Models.CartItem>
+
+@{
+
+}
+<div class="container">
+    <h1 class="text-center mb-4">فاتورة الشراء</h1>
+    <div class="row">
+       <div class="col-lg-6 offset-lg-3"
+          <div class="card mt-5">
+              <div class="card-body">
+                <h3 class="text-center">معلومات العميل:</h3>
+                 <p><strong>الاسم:</strong> @ViewBag.CustomerName</p>
+                 <p><strong>البريد الإلكتروني:</strong> @ViewBag.CustomerEmail</p>
+                 <p><strong>رقم الهاتف:</strong> @ViewBag.CustomerPhone</p>
+                 <p><strong>العنوان:</strong> @ViewBag.CustomerAddress</p>
+              </div>
+          </div>
+       </div>
+    </div>
+
+    <div>
+        <h3 class="text-center">المنتجات:</h3>
+       <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>اسم المنتج</th>
+                <th>الكمية</th>
+                <th>السعر</th>
+                <th>الإجمالي</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(Model!=null &&Model.Any())
+            {
+              @foreach (var item in Model)
+              {
+                <tr>
+                    <td>@item.Product.Name</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.Product.Price.ToString("0.00") ريال</td>
+                    <td>@(item.Quantity * item.Product.Price)ريال</td>
+                </tr>
+              }
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-end">الإجمالي الكلي</td>
+                <td>@Model.Sum(i => i.Quantity * i.Product.Price).ToString("0.00") ريال</td>
+            </tr>
+        </tfoot>
+       </table>
+    </div>
+
+    <div class="text-center">
+        <button onclick="window.print()" class="btn btn-primary">طباعة الفاتورة</button>
+    </div>
+</div>

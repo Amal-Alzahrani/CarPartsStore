@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Company>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">الشركات</h1>
+    <div class="row justify-content-center">
+        @foreach (var company in Model)
+        {
+            <div class="col-md-5 mx-2 mb-4">
+                <div class="card text-center">
+                    <img src="~/images/@company.Logo" class="card-img-top img-fluid" alt="@company.Name" style="height:200px; object-fit:cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">@company.Name</h5>
+                        <a href="/Company/Products?companyId=@company.Id" class="btn btn-primary w-100">عرض قطع الغيار</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
